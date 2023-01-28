@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./assets:/app/assets:ro
+      - ./config:/app/config:ro
+      - ./lib:/app/lib:ro
+      - ./priv:/app/priv
+      - ./test:/app/test:ro
+      - ./seeds:/app/seeds:ro
+      - ./mix.exs:/app/mix.exs:ro
+    network_mode: "host"
