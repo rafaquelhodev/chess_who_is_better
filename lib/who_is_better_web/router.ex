@@ -18,6 +18,7 @@ defmodule WhoIsBetterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/match", MatchLive, :index
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,24 @@
+<h1>Chess</h1>
+
+<p>FEN: <%= @fen %></p>
+
+<div class="row">
+    <div class="column column-25">
+        <a href="/new" class="button">New Game</a>
+    </div>
+    <div class="column column-50">
+        <div style="position:relative;height:0;width:100%;padding-bottom:100%;">
+            <div id="board-container">
+                <%= for r <- @ranks do %>
+                    <%= for f <- @files do %>
+                        <div
+                            class={"square file-#{f} rank-#{r} square-#{WhoIsBetter.Game.which_color(f, r)}"}
+                            phx-click="square-clicked"
+                            phx-value-name="#{@f}#{@r}"
+                        ></div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
