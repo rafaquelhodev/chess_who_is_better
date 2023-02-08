@@ -1,5 +1,6 @@
 defmodule WhoIsBetter.Game do
   alias WhoIsBetter.Game.Board.Square
+  alias WhoIsBetter.Game.Pieces
   alias WhoIsBetter.Game.Parser.Fen
 
   def which_color(file, rank) do
@@ -7,6 +8,11 @@ defmodule WhoIsBetter.Game do
   end
 
   def build_board(fen) do
-    Fen.translate_fen(fen)
+    match = Fen.translate_fen(fen)
+
+    pieces = Pieces.find_info(match.board)
+
+    match
+    |> Map.put(:pieces, pieces)
   end
 end
