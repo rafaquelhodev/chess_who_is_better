@@ -118,3 +118,123 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+.square {
+  height: 12.5%;
+  width: 12.5%;
+  position: absolute;
+}
+
+.square-black {
+  background-color: #ce8919;
+}
+
+.square-light {
+  background-color: #fce4b2;
+}
+
+.rank-1 {
+  top:87.5%;
+}
+.rank-2 {
+  top:75%;
+}
+.rank-3 {
+  top:62.5%;
+}
+.rank-4 {
+  top:50%;
+}
+.rank-5 {
+  top:37.5%;
+}
+.rank-6 {
+  top:25%;
+}
+.rank-7 {
+  top:12.5%;
+}
+.rank-8 {
+  top: 0;
+}
+
+.file-a {
+  left: 0;
+}
+.file-b {
+  left:12.5%;
+}
+.file-c {
+  left:25%;
+}
+.file-d {
+  left:37.5%;
+}
+.file-e {
+  left:50%;
+}
+.file-f {
+  left:62.5%;
+}
+.file-g {
+  left:75%;
+}
+.file-h {
+  left:87.5%;
+}
+
+.piece {
+  height: 12.5%;
+  width: 12.5%;
+  background-size: cover;
+  position: absolute;
+  transition: top ease-in-out 500ms, left ease-in-out 500ms;
+}
+
+.piece-k {
+  background-image: url("/images/pieces/king_black.svg")
+}
+
+.piece-K {
+  background-image: url("/images/pieces/king_white.svg")
+}
+
+.piece-q {
+  background-image: url("/images/pieces/queen_black.svg")
+}
+
+.piece-Q {
+  background-image: url("/images/pieces/queen_white.svg")
+}
+
+.piece-r {
+  background-image: url("/images/pieces/rook_black.svg")
+}
+
+.piece-R {
+  background-image: url("/images/pieces/rook_white.svg")
+}
+
+.piece-b {
+  background-image: url("/images/pieces/bishop_black.svg")
+}
+
+.piece-B {
+  background-image: url("/images/pieces/bishop_white.svg")
+}
+
+.piece-n {
+  background-image: url("/images/pieces/knight_black.svg")
+}
+
+.piece-N {
+  background-image: url("/images/pieces/knight_white.svg")
+}
+
+.piece-p {
+  background-image: url("/images/pieces/pawn_black.svg")
+}
+
+.piece-P {
+  background-image: url("/images/pieces/pawn_white.svg")
+}
