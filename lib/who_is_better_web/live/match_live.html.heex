@@ -19,6 +19,13 @@
                     <% end %>
                 <% end %>
             </div>
+            <div id="pieces-container">
+                <%= for %{file: f, name: name, rank: r} <- @board.pieces do %>
+                    <div
+                        class={"piece piece-#{name} file-#{f} rank-#{r}"}
+                    ></div>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
