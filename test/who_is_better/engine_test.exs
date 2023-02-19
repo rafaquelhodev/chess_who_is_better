@@ -19,5 +19,55 @@ defmodule WhoIsBetter.EngineTest do
 
       assert evaluation.score |> List.last() < 0
     end
+
+    test "evaluates when black has a mate sequence" do
+      {:ok, pid} = Engine.start_link(%{reply_to: self()})
+
+      Engine.start_new_game(pid)
+
+      Engine.set_fen_position(pid, "1K6/7q/2k5/8/8/8/8/8 b - - 0 1")
+
+      evaluation = Engine.evalute_position(pid, 10)
+
+      Engine.stop(pid)
+
+      GenServer.stop(pid, :normal)
+
+      assert evaluation.mate > 0
+    end
+
+    test "evaluates when white has a mate sequence" do
+      {:ok, pid} = Engine.start_link(%{reply_to: self()})
+
+      Engine.start_new_game(pid)
+
+      Engine.set_fen_position(
+        pid,
+        "r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 b - - 0 1"
+      )
+
+      evaluation = Engine.evalute_position(pid, 10)
+
+      Engine.stop(pid)
+
+      GenServer.stop(pid, :normal)
+
+      assert evaluation.mate < 0
+    end
+
+    test "returns an error when the fen is invalid" do
+      {:ok, pid} = Engine.start_link(%{reply_to: self()})
+
+      Engine.start_new_game(pid)
+
+      Engine.set_fen_position(
+        pid,
+        "r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w - - 0 1"
+      )
+
+      evaluation = Engine.evalute_position(pid, 10)
+
+      assert not is_nil(evaluation.error)
+    end
   end
 end

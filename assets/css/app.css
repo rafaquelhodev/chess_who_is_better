@@ -238,3 +238,11 @@
 .piece-P {
   background-image: url("/images/pieces/pawn_white.svg")
 }
+
+.evaluation-correct {
+  background-image: url("/images/evaluation/correct.svg")
+}
+
+.evaluation-wrong {
+  background-image: url("/images/evaluation/wrong.svg")
+}
