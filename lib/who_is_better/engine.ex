@@ -15,12 +15,19 @@ defmodule WhoIsBetter.Engine do
 
     Port.command(port, "uci\n")
 
-    {:ok, %{port: port, evaluation: %{best_move: nil, score: []}}}
+    {:ok, %{port: port, evaluation: %{best_move: nil, score: [], mate: nil}}}
   end
 
   @impl GenServer
   def handle_info({_port, {:data, data}}, state) do
     state = parse_evaluation(state, data)
+    {:noreply, state}
+  end
+
+  @impl GenServer
+  def handle_info({_port, {:exit_status, status}}, state) do
+    state = Map.put(state, :error, status)
+    GenServer.reply(state.reply_to, state)
     {:noreply, state}
   end
 
@@ -90,6 +97,16 @@ defmodule WhoIsBetter.Engine do
 
         new_score = state.evaluation.score ++ [score]
         put_in(state.evaluation.score, new_score)
+
+      String.contains?(data, "score mate") == true ->
+        {mate, _} =
+          ~r/(?<=score mate).*(?= nodes)/
+          |> Regex.run(data)
+          |> List.first()
+          |> String.trim()
+          |> Integer.parse()
+
+        put_in(state.evaluation.mate, mate)
 
       true ->
         state
